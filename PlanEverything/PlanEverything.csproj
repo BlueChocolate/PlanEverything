@@ -8,4 +8,16 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Panuon.WPF.UI" Version="1.1.16.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RcloneLibrary\RcloneLibrary.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+
 </Project>

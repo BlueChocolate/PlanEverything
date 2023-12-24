@@ -2,8 +2,63 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:PlanEverything"
-             StartupUri="MainWindow.xaml">
+             xmlns:pu="https://opensource.panuon.com/wpf-ui"
+             StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <!--合并资源字典中可以放多个资源字典-->
+            <ResourceDictionary.MergedDictionaries>
+                <!--Panuon控件样式-->
+                <ResourceDictionary Source="pack://application:,,,/Panuon.WPF.UI;component/Control.xaml" />
+                <!--<ResourceDictionary Source="{x:Static pu:ResourceDictionaryUris.All}" />-->
+
+                <!--Panuon全局设置通用辅助类-->
+                <ResourceDictionary>
+                    <pu:GlobalSettings x:Key="gobalSettings"
+                                       FontFamily="MiSans Light"
+                                       IconFontFamily="{StaticResource PanuonIconFont}"
+                                       FontSize="14"
+                                       >
+                        <pu:GlobalSettings.Themes>
+                            <pu:ApplicationTheme Key="OrangeLight" ResourceDictionary="/PlanEverything;component/Themes/OrangeLight.xaml" />
+                            <pu:ApplicationTheme Key="OrangeDark" ResourceDictionary="/PlanEverything;component/Themes/OrangeDark.xaml" />
+                        </pu:GlobalSettings.Themes>
+                    </pu:GlobalSettings>
+                </ResourceDictionary>
+                
+                <!--MessageboxX样式-->
+                <ResourceDictionary>
+                    <pu:MessageBoxXSettings x:Key="MessageSetting">
+                        <pu:MessageBoxXSettings.WindowXStyle>
+                            <Style TargetType="pu:WindowX" BasedOn="{StaticResource {x:Static pu:MessageBoxX.WindowXStyleKey}}">
+                                <Setter Property="Foreground" Value="{DynamicResource BodyForeground}" />
+                                <Setter Property="Background" Value="{DynamicResource BodyBackground}" />
+                                <Setter Property="SizeToContent" Value="Manual" />
+                                <Setter Property="Width" Value="400" />
+                                <Setter Property="Height" Value="200" />
+                            </Style>
+                        </pu:MessageBoxXSettings.WindowXStyle>
+                        <pu:MessageBoxXSettings.ButtonStyle>
+                            <Style TargetType="Button" BasedOn="{StaticResource {x:Static pu:MessageBoxX.ButtonStyleKey}}">
+                                <Setter Property="pu:ButtonHelper.CornerRadius" Value="4" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsDefault" Value="True">
+                                        <Setter Property="Foreground" Value="{DynamicResource MainColor}" />
+                                        <Setter Property="Background" Value="Transparent" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </pu:MessageBoxXSettings.ButtonStyle>
+                    </pu:MessageBoxXSettings>
+                </ResourceDictionary>
+                
+                <!--<ResourceDictionary>
+                    <Style TargetType="ContextMenu" BasedOn="{StaticResource {x:Static pu:StyleKeys.ContextMenuStyle}}">
+                        <Setter Property="Background" Value="Azure" />
+                    </Style>
+                </ResourceDictionary>-->
+                
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
