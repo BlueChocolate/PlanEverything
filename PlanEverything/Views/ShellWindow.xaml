@@ -1,0 +1,249 @@
+﻿<pu:WindowX
+    x:Class="PlanEverything.Views.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helpers="clr-namespace:PlanEverything.Helpers"
+    xmlns:local="clr-namespace:PlanEverything"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pu="https://opensource.panuon.com/wpf-ui"
+    Width="800"
+    Height="600"
+    MinWidth="800"
+    MinHeight="450"
+    Background="{DynamicResource BodyBackground}"
+    FontSize="20"
+    Foreground="{DynamicResource BodyForeground}"
+    mc:Ignorable="d">
+    <pu:WindowXCaption.HeaderTemplate>
+        <DataTemplate>
+            <Label
+                Margin="10,10,0,0"
+                Content="一切按计划进行 v0.0.1"
+                FontFamily="Smiley Sans"
+                Style="{DynamicResource MediumLabelStyle}" />
+        </DataTemplate>
+    </pu:WindowXCaption.HeaderTemplate>
+    <pu:WindowX.Resources>
+        <!--  基本控件样式  -->
+        <ResourceDictionary>
+            <Style
+                x:Key="LargeLabelStyle"
+                BasedOn="{StaticResource {x:Static pu:StyleKeys.LabelStyle}}"
+                TargetType="Label">
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="FontSize" Value="30" />
+                <Setter Property="Foreground" Value="{DynamicResource BodyForeground}" />
+                <Setter Property="Background" Value="Transparent" />
+            </Style>
+            <Style
+                x:Key="MediumLabelStyle"
+                BasedOn="{StaticResource {x:Static pu:StyleKeys.LabelStyle}}"
+                TargetType="Label">
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="Foreground" Value="{DynamicResource BodyForeground}" />
+                <Setter Property="Background" Value="Transparent" />
+            </Style>
+            <Style
+                x:Key="SmallLabelStyle"
+                BasedOn="{StaticResource {x:Static pu:StyleKeys.LabelStyle}}"
+                TargetType="Label">
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Foreground" Value="{DynamicResource BodyForeground}" />
+                <Setter Property="Background" Value="Transparent" />
+            </Style>
+
+            <Style BasedOn="{StaticResource {x:Static pu:StyleKeys.RadioButtonStyle}}" TargetType="RadioButton">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Foreground" Value="{DynamicResource BodyForeground}" />
+                <Setter Property="pu:RadioButtonHelper.CheckedForeground" Value="{DynamicResource MainColor}" />
+                <Setter Property="pu:RadioButtonHelper.CheckedToggleBrush" Value="{DynamicResource MainColor}" />
+            </Style>
+
+            <Style BasedOn="{StaticResource {x:Static pu:StyleKeys.ComboBoxStyle}}" TargetType="ComboBox" />
+        </ResourceDictionary>
+    </pu:WindowX.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <pu:Drawer
+            Grid.Column="0"
+            MinWidth="100"
+            MaxWidth="200">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Rectangle pu:WindowX.IsDragMoveArea="True" Fill="Transparent" />
+            </Grid>
+        </pu:Drawer>
+    </Grid>
+
+    <!--<Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="1" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+
+
+        <TabControl
+            Grid.Row="1"
+            Margin="10"
+            pu:IconHelper.Margin="0,0,5,0"
+            pu:TabControlHelper.HeaderPanelAlignment="Stretch"
+            pu:TabControlHelper.ItemsHeight="40"
+            pu:TabControlHelper.ItemsHorizontalHeaderAlignment="Left"
+            pu:TabControlHelper.ItemsHoverBackground="Transparent"
+            pu:TabControlHelper.ItemsHoverForeground="{DynamicResource ThinColor}"
+            pu:TabControlHelper.ItemsPadding="15,0"
+            pu:TabControlHelper.ItemsRibbonLineCornerRadius="2"
+            pu:TabControlHelper.ItemsRibbonLineMargin="0,11,20,11"
+            pu:TabControlHelper.ItemsRibbonLineThickness="5"
+            pu:TabControlHelper.ItemsRibbonLineVisibility="Visible"
+            pu:TabControlHelper.ItemsSelectedBackground="Transparent"
+            pu:TabControlHelper.ItemsSelectedForeground="{DynamicResource MainColor}"
+            pu:TabControlHelper.ItemsSelectedRibbonLineBrush="{DynamicResource MainColor}"
+            Background="Transparent"
+            BorderThickness="0,0,0,0"
+            FontSize="20"
+            Foreground="{DynamicResource BodyForeground}"
+            TabStripPlacement="Left">
+
+            <pu:TabControlHelper.EndControl>
+                <Button
+                    Margin="10,0,0,0"
+                    HorizontalAlignment="Left"
+                    pu:ButtonHelper.ClickForeground="{DynamicResource MainColor}"
+                    pu:ButtonHelper.HoverBackground="Transparent"
+                    pu:ButtonHelper.HoverForeground="{DynamicResource ButtonHoverForeground}"
+                    pu:ButtonHelper.Icon="&#xe938;"
+                    pu:IconHelper.Margin="0,0,5,0"
+                    Background="Transparent"
+                    Click="AboutButtonOnClick"
+                    Content="关于"
+                    FontSize="20"
+                    Foreground="{DynamicResource BodyForeground}" />
+            </pu:TabControlHelper.EndControl>
+
+            <TabItem pu:TabItemHelper.Icon="&#xe942;" Header="仪表盘">
+                <Grid>
+                    <Button
+                        Width="100"
+                        Height="40"
+                        pu:ButtonHelper.CornerRadius="5"
+                        Background="{DynamicResource MainColor}"
+                        Click="Button_Click"
+                        Content="切换主题"
+                        FontFamily="{StaticResource PanuonIconFont}"
+                        FontSize="16"
+                        Foreground="White" />
+                </Grid>
+            </TabItem>
+            <TabItem pu:TabItemHelper.Icon="&#xe994;" Header="配置文件" />
+            <TabItem pu:TabItemHelper.Icon="&#xe9a6;" Header="日志">
+                <TextBox
+                    x:Name="LogRichTextBox"
+                    Margin="5"
+                    VerticalContentAlignment="Top"
+                    pu:ScrollBarHelper.ThumbCornerRadius="5"
+                    pu:TextBoxHelper.CornerRadius="5"
+                    pu:TextBoxHelper.FocusedBorderBrush="{DynamicResource MainColor}"
+                    AcceptsReturn="True"
+                    Background="Transparent"
+                    FontSize="14"
+                    Foreground="{DynamicResource BodyForeground}"
+                    IsReadOnly="True"
+                    TextWrapping="Wrap"
+                    VerticalScrollBarVisibility="Auto">
+                    <TextBox.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="复制" />
+                        </ContextMenu>
+                    </TextBox.ContextMenu>
+                </TextBox>
+            </TabItem>
+            <TabItem pu:TabItemHelper.Icon="&#xe990;" Header="设置">
+
+                <TabControl
+                    pu:TabControlHelper.HeaderPanelAlignment="Stretch"
+                    pu:TabControlHelper.ItemsHeight="50"
+                    pu:TabControlHelper.ItemsHorizontalHeaderAlignment="Left"
+                    pu:TabControlHelper.ItemsHoverBackground="Transparent"
+                    pu:TabControlHelper.ItemsHoverForeground="{DynamicResource ThinColor}"
+                    pu:TabControlHelper.ItemsMargin="0,0,10,0"
+                    pu:TabControlHelper.ItemsRibbonLineCornerRadius="2"
+                    pu:TabControlHelper.ItemsRibbonLineMargin="15,5,15,0"
+                    pu:TabControlHelper.ItemsRibbonLinePlacement="Bottom"
+                    pu:TabControlHelper.ItemsRibbonLineThickness="5"
+                    pu:TabControlHelper.ItemsRibbonLineVisibility="Visible"
+                    pu:TabControlHelper.ItemsSelectedBackground="Transparent"
+                    pu:TabControlHelper.ItemsSelectedForeground="{DynamicResource MainColor}"
+                    pu:TabControlHelper.ItemsSelectedRibbonLineBrush="{DynamicResource MainColor}"
+                    Background="Transparent"
+                    BorderThickness="0,0,0,0"
+                    FontSize="30"
+                    Foreground="{DynamicResource BodyForeground}">
+                    <TabItem Header="基础">
+                        <ScrollViewer>
+                            <StackPanel>
+                                <Label
+                                    Margin="5"
+                                    Content="语言"
+                                    Style="{DynamicResource MediumLabelStyle}" />
+                                <ComboBox
+                                    Height="30"
+                                    Margin="5"
+                                    pu:ComboBoxHelper.CornerRadius="0"
+                                    pu:ComboBoxHelper.FocusedBorderBrush="{DynamicResource MainColor}"
+                                    pu:ComboBoxHelper.HoverBorderBrush="{DynamicResource MainColor}"
+                                    pu:ComboBoxHelper.ItemsHoverBackground="{DynamicResource HoverBackground}"
+                                    pu:ComboBoxHelper.ItemsSelectedBackground="{DynamicResource MainColor}"
+                                    pu:ShadowHelper.Opacity="0"
+                                    Background="{DynamicResource BodyBackground}"
+                                    FontSize="16"
+                                    Foreground="{DynamicResource BodyForeground}">
+                                    <ComboBoxItem Content="简体中文" IsSelected="True" />
+                                    <ComboBoxItem Content="English" />
+                                </ComboBox>
+
+                                <Label
+                                    Margin="5"
+                                    Content="主题"
+                                    Style="{DynamicResource MediumLabelStyle}" />
+
+                                <StackPanel Orientation="Horizontal">
+                                    <RadioButton
+                                        Margin="5"
+                                        Content="跟随系统"
+                                        GroupName="Theme" />
+                                    <RadioButton
+                                        Margin="5"
+                                        Content="浅色模式"
+                                        GroupName="Theme" />
+                                    <RadioButton
+                                        Margin="5"
+                                        Content="黑暗模式"
+                                        GroupName="Theme" />
+                                </StackPanel>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </TabItem>
+                    <TabItem Header="外观" />
+                    <TabItem Header="高级" />
+                </TabControl>
+
+            </TabItem>
+            <TabItem pu:TabItemHelper.Icon="&#xe9ce;" Header="调试" />
+        </TabControl>
+    </Grid>-->
+</pu:WindowX>
