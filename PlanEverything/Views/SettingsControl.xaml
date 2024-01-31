@@ -62,9 +62,9 @@
 
                     <controls:Card
                         Title="傻逼"
-                        ContentPosition="Bottom"
+                        ContentPosition="Right"
                         Description="为什么没用!">
-                        <Label Content="是吧" />
+                        <Button Background="Orange" Content="是吧" />
                     </controls:Card>
 
                     <Label

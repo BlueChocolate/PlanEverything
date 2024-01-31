@@ -16,61 +16,56 @@
         <local:ContentPositionToGridAttributeConverter x:Key="ContentPositionToGridAttributeConverter" />
     </UserControl.Resources>
 
-    <UserControl.Template>
-        <ControlTemplate TargetType="UserControl">
-            <!--  卡片控件模板  -->
-            <Border
-                MinHeight="100"
-                d:DataContext=""
-                Background="{TemplateBinding Background}"
-                BorderThickness="1"
-                CornerRadius="5">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
+    <Border
+        MinHeight="100"
+        d:DataContext=""
+        Background="{Binding Background}"
+        BorderThickness="1"
+        CornerRadius="5">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-                    <!--  图标和标题  -->
-                    <StackPanel
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        Orientation="Horizontal">
-                        <Image
-                            Width="20"
-                            Height="20"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Source="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}}"
-                            Visibility="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource IsNotNullToVisbilitiyConverter}}" />
-                        <Label
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Content="{Binding Title, RelativeSource={RelativeSource TemplatedParent}}"
-                            FontSize="16" />
-                    </StackPanel>
+            <!--  图标和标题  -->
+            <StackPanel
+                Grid.Row="0"
+                Grid.Column="0"
+                Orientation="Horizontal">
+                <Image
+                    Width="20"
+                    Height="20"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Source="{Binding Icon}"
+                    Visibility="{Binding Icon, Converter={StaticResource IsNotNullToVisbilitiyConverter}}" />
+                <Label
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Content="{Binding Title}"
+                    FontSize="16" />
+            </StackPanel>
 
-                    <!--  卡片描述  -->
-                    <Label
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        Content="{Binding Description, RelativeSource={RelativeSource TemplatedParent}}"
-                        Visibility="{Binding Description, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource IsNotNullToVisbilitiyConverter}}" />
+            <!--  卡片描述  -->
+            <Label
+                Grid.Row="1"
+                Grid.Column="0"
+                Content="{Binding Description}"
+                Visibility="{Binding Description, Converter={StaticResource IsNotNullToVisbilitiyConverter}}" />
 
-                    <!--  卡片内容  -->
-                    <ContentPresenter
-                        Grid.Row="{Binding ContentPosition, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ContentPositionToGridAttributeConverter}, ConverterParameter=Row}"
-                        Grid.RowSpan="{Binding ContentPosition, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ContentPositionToGridAttributeConverter}, ConverterParameter=RowSpan}"
-                        Grid.Column="{Binding ContentPosition, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ContentPositionToGridAttributeConverter}, ConverterParameter=Column}"
-                        Grid.ColumnSpan="{Binding ContentPosition, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ContentPositionToGridAttributeConverter}, ConverterParameter=ColumnSpan}"
-                        Content="{TemplateBinding Content}" />
-                </Grid>
-            </Border>
-        </ControlTemplate>
-    </UserControl.Template>
+            <!--  卡片内容  -->
+            <ContentPresenter
+                Grid.Row="{Binding ContentPosition, Converter={StaticResource ContentPositionToGridAttributeConverter}, ConverterParameter=Row}"
+                Grid.RowSpan="{Binding ContentPosition, Converter={StaticResource ContentPositionToGridAttributeConverter}, ConverterParameter=RowSpan}"
+                Grid.Column="{Binding ContentPosition, Converter={StaticResource ContentPositionToGridAttributeConverter}, ConverterParameter=Column}"
+                Grid.ColumnSpan="{Binding ContentPosition, Converter={StaticResource ContentPositionToGridAttributeConverter}, ConverterParameter=ColumnSpan}"
+                Content="{Binding InnerContent}" />
+        </Grid>
+    </Border>
 </UserControl>

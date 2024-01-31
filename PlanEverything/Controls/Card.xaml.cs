@@ -36,6 +36,7 @@ namespace PlanEverything.Controls
 
         public static readonly DependencyProperty ContentPositionProperty = DependencyProperty.Register("ContentPosition", typeof(ContentPosition), typeof(Card), new PropertyMetadata(ContentPosition.Bottom));
 
+        public static readonly DependencyProperty InnerContentProperty = DependencyProperty.Register("InnerContent", typeof(object), typeof(Card), new PropertyMetadata(null));
         public string Title
         {
             get { return (string)GetValue(TitleProperty); }
@@ -58,6 +59,12 @@ namespace PlanEverything.Controls
         {
             get { return (ContentPosition)GetValue(ContentPositionProperty); }
             set { SetValue(ContentPositionProperty, value); }
+        }
+
+        public object InnerContent
+        {
+            get { return GetValue(InnerContentProperty); }
+            set { SetValue(InnerContentProperty, value); }
         }
 
         public Card()
