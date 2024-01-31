@@ -2,14 +2,14 @@
     <SolidColorBrush x:Key="ThinColor">#FFAD92</SolidColorBrush>
     <SolidColorBrush x:Key="MainColor">#FF7F60</SolidColorBrush>
     <SolidColorBrush x:Key="DeepColor">#FF5B23</SolidColorBrush>
-    
+
     <SolidColorBrush x:Key="BodyForeground">#FFFFFF</SolidColorBrush>
     <SolidColorBrush x:Key="BodyBackground">#1E1E1E</SolidColorBrush>
     <SolidColorBrush x:Key="LayerBackground">#3A3A3A</SolidColorBrush>
 
     <SolidColorBrush x:Key="ToastBackground">#6E6E6E</SolidColorBrush>
     <SolidColorBrush x:Key="ToastForeground">#FFFFFF</SolidColorBrush>
-    
+
     <SolidColorBrush x:Key="DescriptionForeground">#8E8E8E</SolidColorBrush>
 
     <SolidColorBrush x:Key="HoverBackground">#3A3A3A</SolidColorBrush>

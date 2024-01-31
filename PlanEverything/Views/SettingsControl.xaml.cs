@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace PlanEverything.Views
 {
     /// <summary>
-    /// DashboardPage.xaml 的交互逻辑
+    /// SettingsControl.xaml 的交互逻辑
     /// </summary>
-    public partial class DashboardPage : Page
+    public partial class SettingsControl : UserControl
     {
-        public DashboardPage()
+        public SettingsControl()
         {
             InitializeComponent();
         }

@@ -21,8 +21,8 @@
                         FontSize="14"
                         IconFontFamily="{StaticResource PanuonIconFont}">
                         <pu:GlobalSettings.Themes>
-                            <pu:ApplicationTheme Key="OrangeLight" ResourceDictionary="/PlanEverything;component/Themes/OrangeLight.xaml" />
-                            <pu:ApplicationTheme Key="OrangeDark" ResourceDictionary="/PlanEverything;component/Themes/OrangeDark.xaml" />
+                            <pu:ApplicationTheme Key="OrangeLight" ResourceDictionary="/PlanEverything;component/Resources/Themes/OrangeLight.xaml" />
+                            <pu:ApplicationTheme Key="OrangeDark" ResourceDictionary="/PlanEverything;component/Resources/Themes/OrangeDark.xaml" />
                         </pu:GlobalSettings.Themes>
                     </pu:GlobalSettings>
                 </ResourceDictionary>
@@ -52,6 +52,8 @@
                         </pu:MessageBoxXSettings.ButtonStyle>
                     </pu:MessageBoxXSettings>
                 </ResourceDictionary>
+
+                <ResourceDictionary Source="/PlanEverything;component/Resources/Styles/LabelStyle.xaml" />
 
                 <!--<ResourceDictionary>
                     <Style TargetType="ContextMenu" BasedOn="{StaticResource {x:Static pu:StyleKeys.ContextMenuStyle}}">

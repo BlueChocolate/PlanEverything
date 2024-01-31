@@ -9,11 +9,13 @@
 
     <SolidColorBrush x:Key="ToastBackground">#1E1E1E</SolidColorBrush>
     <SolidColorBrush x:Key="ToastForeground">#FFFFFF</SolidColorBrush>
-    
+
     <SolidColorBrush x:Key="DescriptionForeground">#8E8E8E</SolidColorBrush>
 
     <SolidColorBrush x:Key="HoverBackground">#FFD8CA</SolidColorBrush>
 
     <SolidColorBrush x:Key="ButtonHoverForeground">#F79674</SolidColorBrush>
+
+    <SolidColorBrush x:Key="SeparatorBrush">#AAAAAA</SolidColorBrush>
 
 </ResourceDictionary>

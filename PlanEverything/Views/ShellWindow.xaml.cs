@@ -13,17 +13,7 @@ namespace PlanEverything.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //关于如何配置主题和资源字典，请查看App.xaml中的pu:GlobalSettings
-            if (_themeFlag == 0)
-            {
-                GlobalSettings.ChangeTheme("OrangeDark");
-                _themeFlag = 1;
-            }
-            else
-            {
-                GlobalSettings.ChangeTheme("OrangeLight");
-                _themeFlag = 0;
-            }
+            
         }
 
         private void AboutButtonOnClick(object sender, RoutedEventArgs e)

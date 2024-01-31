@@ -5,7 +5,7 @@ var client = new RcloneClient();
 //await client.StartServer();
 try
 {
-    var res = await client.Operations.List(new RcloneLibrary.Dtos.OperationsDtos.ListRequest()
+    var res = await client.Operations.List(new RcloneLibrary.Models.OperationsDtos.ListRequest()
     {
         Fs = "od:",
         Remote = "工程文件"
@@ -22,7 +22,7 @@ catch (Exception ex)
 
 try
 {
-    var res = await client.Rc.List(new RcloneLibrary.Dtos.RcDtos.ListRequest());
+    var res = await client.Rc.List(new RcloneLibrary.Models.RcDtos.ListRequest());
     foreach (var item in res.Commands)
     {
         Console.WriteLine($"{item.Path}\t{item.Title}");
