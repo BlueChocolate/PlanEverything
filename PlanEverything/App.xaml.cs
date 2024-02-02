@@ -10,5 +10,4 @@ namespace PlanEverything
     public partial class App : Application
     {
     }
-
 }

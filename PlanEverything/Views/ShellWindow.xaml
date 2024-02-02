@@ -27,21 +27,10 @@
 
     <pu:WindowX.Resources>
         <ResourceDictionary>
-
-
-            <Style BasedOn="{StaticResource {x:Static pu:StyleKeys.RadioButtonStyle}}" TargetType="RadioButton">
-                <Setter Property="FontSize" Value="16" />
-                <Setter Property="Foreground" Value="{DynamicResource BodyForeground}" />
-                <Setter Property="pu:RadioButtonHelper.CheckedForeground" Value="{DynamicResource MainColor}" />
-                <Setter Property="pu:RadioButtonHelper.CheckedToggleBrush" Value="{DynamicResource MainColor}" />
-            </Style>
-
-            <Style BasedOn="{StaticResource {x:Static pu:StyleKeys.ComboBoxStyle}}" TargetType="ComboBox" />
-
+            <converters:BooleanToVisbilitiyConverter x:Key="BooleanToVisbilitiyConverter" />
             <DataTemplate DataType="{x:Type viewmodels:SettingsViewModel}">
                 <views:SettingsControl />
             </DataTemplate>
-
         </ResourceDictionary>
     </pu:WindowX.Resources>
 
@@ -53,16 +42,18 @@
 
         <!--  窗口左侧部分  -->
         <pu:Drawer
-            x:Name="DrawerMenu"
             Grid.Column="0"
-            MinWidth="50"
+            MinWidth="60"
             MaxWidth="250"
+            Background="Transparent"
+            BorderBrush="{DynamicResource SeparatorBrush}"
             BorderThickness="0,0,1,0"
+            IsOpen="{Binding IsMenuOpen}"
             ShadowColor="{x:Null}">
             <Grid>
                 <Grid.RowDefinitions>
                     <!--  标题栏左侧区域  -->
-                    <RowDefinition Height="50" />
+                    <RowDefinition Height="60" />
                     <!--  顶部分割线  -->
                     <RowDefinition Height="Auto" />
                     <!--  功能菜单  -->
@@ -83,70 +74,83 @@
                     <Rectangle pu:WindowX.IsDragMoveArea="True" Fill="Transparent" />
 
                     <!--  Logo、标题以及展开按钮  -->
-                    <Grid Margin="15,0,0,0" pu:WindowX.IsDragMoveArea="True">
+                    <Grid pu:WindowX.IsDragMoveArea="True">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
-                        <!--  Logo  -->
-                        <Image
+                        <StackPanel
                             Grid.Column="0"
-                            Width="20"
-                            Height="20"
-                            IsHitTestVisible="False"
-                            Source="/Resources/Images/Logo.png" />
+                            Margin="20,0,0,0"
+                            Orientation="Horizontal">
+                            <!--  Logo  -->
+                            <Image
+                                Width="20"
+                                Height="20"
+                                IsHitTestVisible="False"
+                                Source="/Resources/Images/Logo.png" />
 
-                        <!--  标题  -->
-                        <Label
-                            Grid.Column="1"
-                            Margin="5,0,0,0"
-                            VerticalAlignment="Center"
-                            Content="计划一切"
-                            IsHitTestVisible="False"
-                            Style="{DynamicResource SmallLabelStyle}" />
+                            <!--  标题  -->
+                            <Label
+                                Grid.Column="1"
+                                Margin="10,0,0,0"
+                                VerticalAlignment="Center"
+                                Content="计划一切"
+                                FontFamily="{StaticResource RegularFontFamily}"
+                                IsHitTestVisible="False"
+                                Style="{DynamicResource MediumLabelStyle}" />
+
+                        </StackPanel>
 
                         <!--  展开收缩按钮  -->
-                        <ToggleButton
+                        <Button
                             Grid.Column="2"
-                            Width="30"
-                            Height="30"
-                            Margin="0,0,15,0"
-                            IsChecked="{Binding IsOpen, ElementName=DrawerMenu, Mode=TwoWay}" />
+                            Width="40"
+                            Height="40"
+                            Margin="10,0,10,0"
+                            pu:ButtonHelper.HoverBackground="{DynamicResource HoverBackground}"
+                            pu:ButtonHelper.HoverCornerRadius="5"
+                            Background="Transparent"
+                            Command="{Binding SwitchMenuCommand}"
+                            Content="{Binding MenuButtonIcon}"
+                            FontFamily="{StaticResource IconFontFamily}"
+                            FontSize="18"
+                            Foreground="{DynamicResource BodyForeground}" />
                     </Grid>
                 </Grid>
-
-
 
                 <!--  顶部分割线  -->
                 <Rectangle
                     Grid.Row="1"
                     Height="1"
-                    Margin="0,0,0,10"
                     Fill="{DynamicResource SeparatorBrush}" />
 
                 <!--  功能菜单  -->
                 <ListBox
-                    x:Name="PageListBox"
                     Grid.Row="2"
-                    Margin="15,0,15,0"
-                    SelectedIndex="{Binding MenuSelectedIndex}">
-                    <behaviors:Interaction.Triggers>
-                        <behaviors:EventTrigger EventName="SelectionChanged">
-                            <behaviors:InvokeCommandAction Command="{Binding MenuSelectionChangedCommand}" />
-                        </behaviors:EventTrigger>
-                    </behaviors:Interaction.Triggers>
-                    <ListBoxItem Content="仪表盘" />
-                    <ListBoxItem Content="设置" />
-                    <ListBoxItem Content="日志" />
+                    Margin="10"
+                    SelectedIndex="{Binding MenuSelectedIndex}"
+                    Style="{StaticResource MainMenuListBoxStyle}">
+                    <ListBoxItem
+                        Margin="0,0,0,5"
+                        pu:ListBoxItemHelper.Icon="&#xf625;"
+                        Content="仪表盘" />
+                    <ListBoxItem
+                        Margin="0,0,0,5"
+                        pu:ListBoxItemHelper.Icon="&#xf7d9;"
+                        Content="设置" />
+                    <ListBoxItem
+                        Margin="0,0,0,0"
+                        pu:ListBoxItemHelper.Icon="&#xf5fc;"
+                        Content="日志" />
                 </ListBox>
 
                 <!--  中部分割线  -->
                 <Rectangle
                     Grid.Row="3"
                     Height="1"
-                    Margin="15,10,15,10"
+                    Margin="10,0,10,0"
                     Fill="{DynamicResource SeparatorBrush}" />
 
                 <!--  计划标题  -->
@@ -166,25 +170,13 @@
                 <!--  计划列表  -->
                 <ListBox
                     Grid.Row="5"
+                    MinHeight="100"
                     Margin="15,10,15,0"
                     SelectedIndex="{Binding PlanSelectedIndex}" />
 
                 <!--  底部空白  -->
                 <Grid Grid.Row="6">
-                    <TextBox
-                        Margin="5"
-                        VerticalContentAlignment="Top"
-                        pu:ScrollBarHelper.ThumbCornerRadius="5"
-                        pu:TextBoxHelper.CornerRadius="5"
-                        pu:TextBoxHelper.FocusedBorderBrush="{DynamicResource MainColor}"
-                        AcceptsReturn="True"
-                        Background="Transparent"
-                        FontSize="14"
-                        Foreground="{DynamicResource BodyForeground}"
-                        IsReadOnly="True"
-                        Text="{Binding DebugLog}"
-                        TextWrapping="Wrap"
-                        VerticalScrollBarVisibility="Auto">
+                    <TextBox Margin="15" Style="{DynamicResource LogTextBoxStyle}">
                         <TextBox.ContextMenu>
                             <ContextMenu>
                                 <MenuItem Header="复制" />
@@ -199,7 +191,7 @@
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <!--  标题栏右侧区域  -->
-                <RowDefinition Height="50" />
+                <RowDefinition Height="60" />
                 <!--  顶部分割线  -->
                 <RowDefinition Height="Auto" />
                 <!--  页面内容  -->
@@ -219,24 +211,65 @@
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
-                    <!--  标题  -->
-                    <Label
+                    <!--  搜索框  -->
+                    <pu:SearchBox
                         Grid.Column="1"
-                        Margin="15,0,0,0"
-                        VerticalAlignment="Center"
-                        Content="仪表盘"
-                        IsHitTestVisible="False"
-                        Style="{DynamicResource MediumLabelStyle}" />
+                        Margin="14"
+                        pu:IconHelper.Margin="5,0,0,0"
+                        pu:IconHelper.VerticalAlignment="Center"
+                        pu:IconHelper.Width="20"
+                        Background="{DynamicResource BodyBackground}"
+                        CornerRadius="5"
+                        Foreground="{DynamicResource BodyForeground}"
+                        Icon="&#xf002;" />
 
-                    <!--  按钮  -->
-                    <Button
+                    <!--  控制按钮组  -->
+
+                    <StackPanel
                         Grid.Column="2"
-                        Width="30"
-                        Height="30"
                         Margin="0,0,15,0"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Center"
-                        Command="{Binding CloseButtonClickedCommand}" />
+                        Orientation="Horizontal">
+                        <Button
+                            Width="30"
+                            Height="30"
+                            Margin="0,0,5,0"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            pu:ButtonHelper.HoverBackground="{DynamicResource HoverBackground}"
+                            pu:ButtonHelper.HoverCornerRadius="5"
+                            Background="Transparent"
+                            Command="{Binding CloseButtonClickedCommand}"
+                            Content="&#xf068;"
+                            FontFamily="{StaticResource IconFontFamily}"
+                            FontSize="18" />
+                        <Button
+                            Width="30"
+                            Height="30"
+                            Margin="0,0,5,0"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            pu:ButtonHelper.HoverBackground="{DynamicResource HoverBackground}"
+                            pu:ButtonHelper.HoverCornerRadius="5"
+                            Background="Transparent"
+                            Command="{Binding CloseButtonClickedCommand}"
+                            Content="&#xf066;"
+                            FontFamily="{StaticResource IconFontFamily}"
+                            FontSize="18" />
+                        <Button
+                            Width="30"
+                            Height="30"
+                            Margin="0,0,0,0"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            pu:ButtonHelper.HoverBackground="{DynamicResource HoverBackground}"
+                            pu:ButtonHelper.HoverCornerRadius="5"
+                            Background="Transparent"
+                            Command="{Binding CloseButtonClickedCommand}"
+                            Content="&#xf00d;"
+                            FontFamily="{StaticResource IconFontFamily}"
+                            FontSize="18" />
+                    </StackPanel>
+
                 </Grid>
 
 

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Globalization;
 using System.Windows.Data;
 
 namespace PlanEverything.Converters
@@ -20,7 +15,7 @@ namespace PlanEverything.Converters
             return value.Equals(Enum.Parse(value.GetType(), parameter.ToString()));
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value == null || parameter == null || !(bool)value)
             {

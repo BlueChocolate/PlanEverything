@@ -15,10 +15,11 @@ namespace PlanEverything.ViewModels
             DashboardViewModel = new DashboardViewModel();
             SettingsViewModel = new SettingsViewModel();
 
+            IsMenuOpen = true;
+            MenuButtonIcon = "\uf100";
+
             DebugLog = "ShellViewModel created\n";
         }
-
-        
 
         [ObservableProperty]
         private int _viewSelectedIndex;
@@ -30,16 +31,25 @@ namespace PlanEverything.ViewModels
         private int _planSelectedIndex;
 
         [ObservableProperty]
-        private bool _isPaneOpen;
+        private bool _isMenuOpen;
+
+        [ObservableProperty]
+        private string _menuButtonIcon;
 
         [ObservableProperty]
         private string? _debugLog;
 
-
         [RelayCommand]
-        private void MenuSelectionChanged()
+        private void SwitchMenu()
         {
-            DebugLog += "MenuSelectionChanged\n";
+            DebugLog += "SwitchMenu\n";
+            IsMenuOpen = !IsMenuOpen;
+            MenuButtonIcon = IsMenuOpen ? "\uf100" : "\uf101;";
+        }
+
+        partial void OnMenuSelectedIndexChanged(int value)
+        {
+            DebugLog += $"MenuSelectionChanged: {value}\n";
             if (MenuSelectedIndex != -1)
             {
                 PlanSelectedIndex = -1;
@@ -47,14 +57,13 @@ namespace PlanEverything.ViewModels
             }
         }
 
-        [RelayCommand]
-        private void PlanSelectionChanged()
+        partial void OnPlanSelectedIndexChanged(int value)
         {
-            DebugLog += "PlanSelectionChanged\n";
-            if (PlanSelectedIndex != -1)
+            DebugLog += $"MenuSelectionChanged: {value}\n";
+            if (MenuSelectedIndex != -1)
             {
-                MenuSelectedIndex = -1;
-                ViewSelectedIndex = 5;
+                PlanSelectedIndex = -1;
+                ViewSelectedIndex = MenuSelectedIndex;
             }
         }
 

@@ -16,4 +16,6 @@
 
     <SolidColorBrush x:Key="ButtonHoverForeground">#FFAD92</SolidColorBrush>
 
+    <SolidColorBrush x:Key="SeparatorBrush">#6E6E6E</SolidColorBrush>
+
 </ResourceDictionary>

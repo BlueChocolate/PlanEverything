@@ -13,13 +13,20 @@
                 <ResourceDictionary Source="pack://application:,,,/Panuon.WPF.UI;component/Control.xaml" />
                 <!--<ResourceDictionary Source="{x:Static pu:ResourceDictionaryUris.All}" />-->
 
+                <!--  字体资源  -->
+                <ResourceDictionary>
+                    <FontFamily x:Key="LightFontFamily">pack://application:,,,/Resources/Fonts/#MiSans Light</FontFamily>
+                    <FontFamily x:Key="RegularFontFamily">pack://application:,,,/Resources/Fonts/#MiSans Regular</FontFamily>
+                    <FontFamily x:Key="IconFontFamily">pack://application:,,,/Resources/Fonts/#Font Awesome 6 Free Solid</FontFamily>
+                </ResourceDictionary>
+
                 <!--  Panuon全局设置通用辅助类  -->
                 <ResourceDictionary>
                     <pu:GlobalSettings
                         x:Key="gobalSettings"
-                        FontFamily="MiSans Light"
+                        FontFamily="{StaticResource LightFontFamily}"
                         FontSize="14"
-                        IconFontFamily="{StaticResource PanuonIconFont}">
+                        IconFontFamily="{StaticResource IconFontFamily}">
                         <pu:GlobalSettings.Themes>
                             <pu:ApplicationTheme Key="OrangeLight" ResourceDictionary="/PlanEverything;component/Resources/Themes/OrangeLight.xaml" />
                             <pu:ApplicationTheme Key="OrangeDark" ResourceDictionary="/PlanEverything;component/Resources/Themes/OrangeDark.xaml" />
@@ -27,39 +34,14 @@
                     </pu:GlobalSettings>
                 </ResourceDictionary>
 
-                <!--  MessageboxX样式  -->
-                <ResourceDictionary>
-                    <pu:MessageBoxXSettings x:Key="MessageSetting">
-                        <pu:MessageBoxXSettings.WindowXStyle>
-                            <Style BasedOn="{StaticResource {x:Static pu:MessageBoxX.WindowXStyleKey}}" TargetType="pu:WindowX">
-                                <Setter Property="Foreground" Value="{DynamicResource BodyForeground}" />
-                                <Setter Property="Background" Value="{DynamicResource BodyBackground}" />
-                                <Setter Property="SizeToContent" Value="Manual" />
-                                <Setter Property="Width" Value="400" />
-                                <Setter Property="Height" Value="200" />
-                            </Style>
-                        </pu:MessageBoxXSettings.WindowXStyle>
-                        <pu:MessageBoxXSettings.ButtonStyle>
-                            <Style BasedOn="{StaticResource {x:Static pu:MessageBoxX.ButtonStyleKey}}" TargetType="Button">
-                                <Setter Property="pu:ButtonHelper.CornerRadius" Value="4" />
-                                <Style.Triggers>
-                                    <Trigger Property="IsDefault" Value="True">
-                                        <Setter Property="Foreground" Value="{DynamicResource MainColor}" />
-                                        <Setter Property="Background" Value="Transparent" />
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </pu:MessageBoxXSettings.ButtonStyle>
-                    </pu:MessageBoxXSettings>
-                </ResourceDictionary>
-
+                <!--  相关控件样式  -->
                 <ResourceDictionary Source="/PlanEverything;component/Resources/Styles/LabelStyle.xaml" />
-
-                <!--<ResourceDictionary>
-                    <Style TargetType="ContextMenu" BasedOn="{StaticResource {x:Static pu:StyleKeys.ContextMenuStyle}}">
-                        <Setter Property="Background" Value="Azure" />
-                    </Style>
-                </ResourceDictionary>-->
+                <ResourceDictionary Source="/PlanEverything;component/Resources/Styles/TabControlStyle.xaml" />
+                <ResourceDictionary Source="/PlanEverything;component/Resources/Styles/ComboBoxStyle.xaml" />
+                <ResourceDictionary Source="/PlanEverything;component/Resources/Styles/TextBoxStyle.xaml" />
+                <ResourceDictionary Source="/PlanEverything;component/Resources/Styles/MessageboxXStyle.xaml" />
+                <ResourceDictionary Source="/PlanEverything;component/Resources/Styles/RadioButtonStyle.xaml" />
+                <ResourceDictionary Source="/PlanEverything;component/Resources/Styles/ListBoxStyle.xaml" />
 
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
