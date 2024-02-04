@@ -1,0 +1,51 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:pu="https://opensource.panuon.com/wpf-ui">
+    <Style
+        x:Key="CardComboBoxStyle"
+        BasedOn="{StaticResource {x:Static pu:StyleKeys.ComboBoxStyle}}"
+        TargetType="ComboBox">
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="FontSize" Value="14" />
+
+        <Setter Property="pu:ShadowHelper.Opacity" Value="0" />
+        <Setter Property="pu:DropDownHelper.ShadowColor" Value="Gray" />
+        <Setter Property="pu:DropDownHelper.ClipDockSideShadow" Value="False" />
+        <Setter Property="pu:DropDownHelper.VerticalOffset" Value="5" />
+
+        <Setter Property="Height" Value="30" />
+        <Setter Property="MinWidth" Value="125" />
+        <Setter Property="Margin" Value="0,0,15,0" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+
+        <Setter Property="Background" Value="{DynamicResource InputBackgroundBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource StandardForegroundBrush}" />
+
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}" />
+        <Setter Property="pu:ComboBoxHelper.HoverBorderBrush" Value="{DynamicResource BorderBrush}" />
+        <Setter Property="pu:ComboBoxHelper.FocusedBorderBrush" Value="{DynamicResource BorderBrush}" />
+
+        <Setter Property="pu:ComboBoxHelper.ItemsBackground" Value="{DynamicResource StandardBackgroundBrush}" />
+        <Setter Property="pu:ComboBoxHelper.ItemsHoverBackground" Value="{DynamicResource HoverBackgroundBrush}" />
+        <Setter Property="pu:ComboBoxHelper.ItemsSelectedBackground" Value="{DynamicResource FocusedBackgroundBrush}" />
+
+        <Setter Property="pu:ComboBoxHelper.ItemsForeground" Value="{DynamicResource DescriptionForegroundBrush}" />
+        <Setter Property="pu:ComboBoxHelper.ItemsHoverForeground" Value="{DynamicResource StandardForegroundBrush}" />
+        <Setter Property="pu:ComboBoxHelper.ItemsSelectedForeground" Value="{DynamicResource StandardForegroundBrush}" />
+
+        <Setter Property="pu:ComboBoxHelper.CornerRadius" Value="5" />
+        <Setter Property="pu:ComboBoxHelper.HoverCornerRadius" Value="5" />
+        <Setter Property="pu:ComboBoxHelper.FocusedCornerRadius" Value="5" />
+        <Setter Property="pu:ComboBoxHelper.ItemsCornerRadius" Value="5" />
+        <Setter Property="pu:ComboBoxHelper.ItemsHoverCornerRadius" Value="0" />
+        <Setter Property="pu:ComboBoxHelper.ItemsSelectedCornerRadius" Value="0" />
+        <Setter Property="pu:DropDownHelper.CornerRadius" Value="5" />
+
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="pu:ComboBoxHelper.FocusedBorderThickness" Value="1" />
+        <Setter Property="pu:ComboBoxHelper.HoverBorderThickness" Value="1" />
+        <Setter Property="pu:DropDownHelper.BorderThickness" Value="1" />
+    </Style>
+</ResourceDictionary>

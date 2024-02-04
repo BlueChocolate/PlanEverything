@@ -1,0 +1,87 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:PlanEverything.Controls"
+    xmlns:converters="clr-namespace:PlanEverything.Converters">
+
+    <converters:IsNotNullToVisbilitiyConverter x:Key="IsNotNullToVisbilitiyConverter" />
+    <controls:ContentPositionToGridAttributeConverter x:Key="ContentPositionToGridAttributeConverter" />
+
+    <Style TargetType="{x:Type controls:Card}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:Card}">
+                    <Border
+                        Padding="{TemplateBinding Padding}"
+                        Background="{Binding Path=Background, RelativeSource={RelativeSource TemplatedParent}}"
+                        CornerRadius="5">
+                        <Grid VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Grid
+                                Grid.Row="0"
+                                Grid.RowSpan="1"
+                                Grid.Column="0"
+                                MinWidth="{Binding Path=IconMinWidth, RelativeSource={RelativeSource TemplatedParent}}"
+                                MinHeight="{Binding Path=IconMinHeight, RelativeSource={RelativeSource TemplatedParent}}"
+                                Margin="{Binding Path=IconMargin, RelativeSource={RelativeSource TemplatedParent}}"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center">
+                                <controls:IconPresenter
+                                    Width="{Binding Path=IconWidth, RelativeSource={RelativeSource TemplatedParent}}"
+                                    Height="{Binding Path=IconHeight, RelativeSource={RelativeSource TemplatedParent}}"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    HorizontalContentAlignment="Center"
+                                    VerticalContentAlignment="Center"
+                                    Content="{Binding Path=Icon, RelativeSource={RelativeSource TemplatedParent}}"
+                                    FontFamily="{Binding Path=IconFontFamily, RelativeSource={RelativeSource TemplatedParent}}"
+                                    FontSize="{Binding Path=IconFontSize, RelativeSource={RelativeSource TemplatedParent}}"
+                                    Foreground="{Binding Path=IconFontForeground, RelativeSource={RelativeSource TemplatedParent}}"
+                                    Visibility="{Binding Path=Icon, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource IsNotNullToVisbilitiyConverter}}" />
+                            </Grid>
+
+
+                            <StackPanel
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Margin="0,5,0,5"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Orientation="Vertical">
+                                <TextBlock
+                                    Background="Transparent"
+                                    FontSize="16"
+                                    Foreground="{Binding Path=TitleForeground, RelativeSource={RelativeSource TemplatedParent}}"
+                                    Text="{Binding Path=Title, RelativeSource={RelativeSource TemplatedParent}}"
+                                    TextWrapping="Wrap" />
+                                <TextBlock
+                                    Margin="0,1,0,0"
+                                    Background="Transparent"
+                                    FontSize="14"
+                                    Foreground="{Binding Path=DescriptionForeground, RelativeSource={RelativeSource TemplatedParent}}"
+                                    Text="{Binding Path=Description, RelativeSource={RelativeSource TemplatedParent}}"
+                                    TextWrapping="Wrap" />
+                            </StackPanel>
+
+                            <ContentPresenter
+                                Grid.Row="{Binding Path=ContentPosition, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ContentPositionToGridAttributeConverter}, ConverterParameter=Row}"
+                                Grid.RowSpan="{Binding Path=ContentPosition, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ContentPositionToGridAttributeConverter}, ConverterParameter=RowSpan}"
+                                Grid.Column="{Binding Path=ContentPosition, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ContentPositionToGridAttributeConverter}, ConverterParameter=Column}"
+                                Grid.ColumnSpan="{Binding Path=ContentPosition, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ContentPositionToGridAttributeConverter}, ConverterParameter=ColumnSpan}"
+                                Content="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

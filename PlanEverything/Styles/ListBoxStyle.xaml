@@ -1,0 +1,78 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:pu="https://opensource.panuon.com/wpf-ui">
+
+    <!--  基础 ListBoxItem 样式  -->
+    <Style
+        x:Key="BaseListBoxItemStyle"
+        BasedOn="{StaticResource {x:Static pu:StyleKeys.ListBoxItemStyle}}"
+        TargetType="ListBoxItem">
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource MessageForeground}" />
+                <Setter Property="FontWeight" Value="SemiBold" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--  基础 ListBox 样式  -->
+    <Style
+        x:Key="BaseListBoxStyle"
+        BasedOn="{StaticResource {x:Static pu:StyleKeys.ListBoxStyle}}"
+        TargetType="ListBox">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource DescriptionForegroundBrush}" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="pu:ListBoxHelper.ItemsSelectedForeground" Value="{DynamicResource StandardForegroundBrush}" />
+        <Setter Property="pu:ListBoxHelper.ItemsSelectedBackground" Value="{DynamicResource HoverBackgroundBrush}" />
+        <Setter Property="pu:ListBoxHelper.ItemsHoverForeground" Value="{DynamicResource StandardForegroundBrush}" />
+        <Setter Property="pu:ListBoxHelper.ItemsHoverBackground" Value="{DynamicResource HoverBackgroundBrush}" />
+        <Setter Property="pu:ListBoxHelper.ItemsSelectedForeground" Value="{DynamicResource PrimaryForegroundBrush}" />
+        <Setter Property="pu:ListBoxHelper.ItemsSelectedBackground" Value="{DynamicResource FocusedBackgroundBrush}" />
+        <Setter Property="pu:ListBoxHelper.ItemsHeight" Value="33" />
+        <Setter Property="pu:ListBoxHelper.ItemsCornerRadius" Value="5" />
+        <Setter Property="pu:IconHelper.Margin" Value="0,0,10,0" />
+        <Setter Property="pu:ListBoxHelper.ItemsIconWidth" Value="30" />
+        <Setter Property="pu:ListBoxHelper.ItemsPadding" Value="10,0,0,0" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource BaseListBoxItemStyle}" />
+    </Style>
+
+    <!--  主菜单 ListBox 样式  -->
+    <Style
+        x:Key="MenuListBoxItemStyle"
+        BasedOn="{StaticResource BaseListBoxItemStyle}"
+        TargetType="ListBoxItem" />
+    <Style
+        x:Key="MenuListBoxStyle"
+        BasedOn="{StaticResource BaseListBoxStyle}"
+        TargetType="ListBox">
+        <Setter Property="ItemContainerStyle" Value="{StaticResource MenuListBoxItemStyle}" />
+        <Setter Property="FontFamily" Value="{StaticResource RegularFontFamily}" />
+    </Style>
+
+    <!--  计划列表 ListBox 样式  -->
+    <Style
+        x:Key="PlanListBoxItemStyle"
+        BasedOn="{StaticResource BaseListBoxItemStyle}"
+        TargetType="ListBoxItem">
+        <Setter Property="pu:ListBoxItemHelper.Icon" Value="{Binding Icon}" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="ContextMenu">
+            <Setter.Value>
+                <ContextMenu>
+                    <MenuItem Header="重命名" Icon="&#xf044;" />
+                    <MenuItem Header="删除" Icon="&#xf2ed;" />
+                </ContextMenu>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style
+        x:Key="PlanListBoxStyle"
+        BasedOn="{StaticResource BaseListBoxStyle}"
+        TargetType="ListBox">
+        <Setter Property="pu:ListBoxHelper.ItemsMargin" Value="0,5,0,0" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource PlanListBoxItemStyle}" />
+    </Style>
+</ResourceDictionary>

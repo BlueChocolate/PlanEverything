@@ -1,0 +1,51 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:pu="https://opensource.panuon.com/wpf-ui">
+
+    <!--  调色盘  -->
+    <Color x:Key="Primary100">#FF7A45</Color>
+    <Color x:Key="Primary200">#ffbb99</Color>
+    <Color x:Key="Primary300">#FFFFA1</Color>
+    <Color x:Key="Foreground100">#F5F5F5</Color>
+    <Color x:Key="Foreground200">#E0E0E0</Color>
+    <Color x:Key="Foreground300">#CCCCCC</Color>
+    <Color x:Key="Background100">#1D1F21</Color>
+    <Color x:Key="Background200">#2C2E30</Color>
+    <Color x:Key="Background300">#444648</Color>
+    <Color x:Key="TransparentBackground100">#661D1F21</Color>
+
+    <!--  前景笔刷  -->
+    <SolidColorBrush x:Key="StandardForegroundBrush" Color="{StaticResource Foreground100}" />
+    <SolidColorBrush x:Key="HoverForegroundBrush" Color="{StaticResource Foreground200}" />
+    <SolidColorBrush x:Key="FocusedForegroundBrush" Color="{StaticResource Foreground100}" />
+    <SolidColorBrush x:Key="DescriptionForegroundBrush" Color="{StaticResource Foreground200}" />
+    <SolidColorBrush x:Key="DisabledForegroundBrush" Color="{StaticResource Foreground300}" />
+    <SolidColorBrush x:Key="PrimaryForegroundBrush" Color="{StaticResource Primary100}" />
+    <SolidColorBrush x:Key="PrimaryHoverForegroundBrush" Color="{StaticResource Primary200}" />
+
+    <!--  背景笔刷  -->
+    <SolidColorBrush x:Key="StandardBackgroundBrush" Color="{StaticResource Background100}" />
+    <SolidColorBrush x:Key="HoverBackgroundBrush" Color="{StaticResource Background200}" />
+    <SolidColorBrush x:Key="PressedBackgroundBrush" Color="{StaticResource Background300}" />
+    <SolidColorBrush x:Key="FocusedBackgroundBrush" Color="{StaticResource Background200}" />
+    <SolidColorBrush x:Key="ShellBackgroundBrush" Color="{StaticResource Background100}" />
+    <SolidColorBrush x:Key="ShellTransparentBackgroundBrush" Color="{StaticResource TransparentBackground100}" />
+    <SolidColorBrush x:Key="MaskBackgroundBrush" Color="{StaticResource TransparentBackground100}" />
+
+    <!--  边框笔刷  -->
+    <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource Background300}" />
+    <SolidColorBrush x:Key="HoverBorderBrush" Color="{StaticResource Primary100}" />
+    <SolidColorBrush x:Key="ForceBorderBrush" Color="{StaticResource Primary100}" />
+
+    <!--  分割线笔刷  -->
+    <SolidColorBrush x:Key="SeparatorBrush" Color="{StaticResource Background300}" />
+
+    <!--  层次控件笔刷  -->
+    <SolidColorBrush x:Key="ContainerBackgroundBrush" Color="{StaticResource Background200}" />
+    <SolidColorBrush x:Key="InputBackgroundBrush" Color="{StaticResource Background100}" />
+    <SolidColorBrush x:Key="ShadowBrush" Color="{StaticResource Background300}" />
+    <SolidColorBrush x:Key="ToastBackgroundBrush">#6E6E6E</SolidColorBrush>
+    <SolidColorBrush x:Key="ToastForegroundBrush">#FFFFFF</SolidColorBrush>
+
+</ResourceDictionary>

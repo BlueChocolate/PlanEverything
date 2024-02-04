@@ -1,48 +1,22 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using Panuon.WPF.UI;
-using System.Windows;
+using PlanEverything.Helpers;
 
 namespace PlanEverything.ViewModels
 {
     internal partial class SettingsViewModel : ObservableObject
     {
         [ObservableProperty]
-        private Theme _theme;
+        private ThemeMode _theme;
 
-        partial void OnThemeChanged(Theme value)
+        partial void OnThemeChanged(ThemeMode value)
         {
-            ChangeTheme(value);
-        }
-
-        private static void ChangeTheme(Theme theme)
-        {
-            switch (theme)
-            {
-                case Theme.Default:
-
-                    break;
-                case Theme.Light:
-                    GlobalSettings.ChangeTheme("OrangeLight");
-                    break;
-                case Theme.Dark:
-                    GlobalSettings.ChangeTheme("OrangeDark");
-                    break;
-                default:
-                    break;
-            }
+            ThemeHelper.ChangeTheme(value);
         }
 
         public SettingsViewModel()
         {
-            Theme = Theme.Default;
+            Theme = ThemeMode.Default;
         }
-    }
-
-    public enum Theme
-    {
-        Default = 0,
-        Light,
-        Dark
     }
 }
