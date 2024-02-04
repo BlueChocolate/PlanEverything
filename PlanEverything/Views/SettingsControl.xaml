@@ -17,7 +17,7 @@
     </UserControl.DataContext>
     <UserControl.Resources>
         <converters:EnumToIntConverter x:Key="EnumToIntConverter" />
-        <converters:EnumToBooleanConverter x:Key="EnumToBooleanConverter" />
+        <converters:BooleanToVisbilitiyConverter x:Key="BooleanToVisbilitiyConverter" />
     </UserControl.Resources>
 
     <TabControl Style="{DynamicResource HorizontalTabControlStyle}">
@@ -26,10 +26,12 @@
                 <StackPanel>
                     <controls:Card
                         Title="语言"
-                        Margin="0,10,0,0"
+                        Margin="5,10,0,0"
                         ContentPosition="Right"
-                        Description="修改应用程序的语言">
-                        <ComboBox x:Name="ji" Margin="10">
+                        Description="修改应用程序的语言"
+                        Icon="&#xf1ab;"
+                        IconFontSize="21">
+                        <ComboBox VerticalAlignment="Center" Style="{DynamicResource CardComboBoxStyle}">
                             <ComboBoxItem Content="简体中文" IsSelected="True" />
                             <ComboBoxItem Content="English" />
                         </ComboBox>
@@ -42,50 +44,18 @@
             <ScrollViewer>
                 <StackPanel>
                     <controls:Card
-                        x:Name="a"
                         Title="主题"
-                        Margin="0,10,0,0"
-                        Background="{DynamicResource LayerBackground}"
+                        Margin="5,10,0,0"
                         ContentPosition="Right"
-                        Description="修改应用程序的语言"
-                        Foreground="{DynamicResource BodyForeground}">
-
-                        <!--  可以用一个 Borad 来包实现 Win11 的下拉框效果  -->
-                        <Grid>
-                            <Border
-                                x:Name="ab"
-                                Height="40"
-                                Margin="0,0,10,0"
-                                BorderBrush="{DynamicResource BodyBackground}"
-                                BorderThickness="0,0,0,10" />
-                            <ComboBox
-                                Margin="0,0,10,0"
-                                pu:ComboBoxHelper.CornerRadius="5"
-                                pu:ComboBoxHelper.FocusedBorderBrush="Transparent"
-                                pu:ComboBoxHelper.FocusedBorderThickness="0"
-                                pu:ComboBoxHelper.FocusedCornerRadius="5"
-                                pu:ComboBoxHelper.HoverBorderBrush="{DynamicResource MainColor}"
-                                pu:ComboBoxHelper.HoverBorderThickness="0"
-                                pu:ComboBoxHelper.HoverCornerRadius="5"
-                                pu:ComboBoxHelper.ItemsBorderThickness="0"
-                                pu:ComboBoxHelper.ItemsCornerRadius="5"
-                                Background="{DynamicResource BodyBackground}"
-                                BorderThickness="0"
-                                SelectedIndex="{Binding Theme, Converter={StaticResource EnumToIntConverter}}">
-                                <ComboBoxItem
-                                    Margin="5,5,5,0"
-                                    Content="跟随系统"
-                                    IsSelected="True" />
-                                <ComboBoxItem Margin="5,5,5,0" Content="浅色模式" />
-                                <ComboBoxItem Margin="5,5,5,5" Content="黑暗模式" />
-                            </ComboBox>
-                        </Grid>
+                        Description="修改应用程序的主题"
+                        Icon="&#xf042;">
+                        <ComboBox SelectedIndex="{Binding Theme, Converter={StaticResource EnumToIntConverter}}" Style="{DynamicResource CardComboBoxStyle}">
+                            <ComboBoxItem Margin="5,10,5,0" Content="跟随系统" />
+                            <ComboBoxItem Margin="5,5,5,0" Content="浅色模式" />
+                            <ComboBoxItem Margin="5,5,5,5" Content="黑暗模式" />
+                        </ComboBox>
 
                     </controls:Card>
-
-                    <pu:DropDown Content="123" />
-
-
                 </StackPanel>
             </ScrollViewer>
         </TabItem>

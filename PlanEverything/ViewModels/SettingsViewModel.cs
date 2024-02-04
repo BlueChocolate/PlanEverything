@@ -1,7 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using Panuon.WPF.UI;
-using System.Windows;
 
 namespace PlanEverything.ViewModels
 {

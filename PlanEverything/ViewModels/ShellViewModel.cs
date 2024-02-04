@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Panuon.WPF.UI;
+using System.Windows;
 
 namespace PlanEverything.ViewModels
 {
@@ -7,19 +9,10 @@ namespace PlanEverything.ViewModels
     {
         public DashboardViewModel DashboardViewModel { get; private set; }
         public SettingsViewModel SettingsViewModel { get; private set; }
+        public LogViewModel LogViewModel { get; private set; }
 
         //public ObservableCollection<> PlanPages { get; }
 
-        public ShellViewModel()
-        {
-            DashboardViewModel = new DashboardViewModel();
-            SettingsViewModel = new SettingsViewModel();
-
-            IsMenuOpen = true;
-            MenuButtonIcon = "\uf100";
-
-            DebugLog = "ShellViewModel created\n";
-        }
 
         [ObservableProperty]
         private int _viewSelectedIndex;
@@ -39,14 +32,6 @@ namespace PlanEverything.ViewModels
         [ObservableProperty]
         private string? _debugLog;
 
-        [RelayCommand]
-        private void SwitchMenu()
-        {
-            DebugLog += "SwitchMenu\n";
-            IsMenuOpen = !IsMenuOpen;
-            MenuButtonIcon = IsMenuOpen ? "\uf100" : "\uf101;";
-        }
-
         partial void OnMenuSelectedIndexChanged(int value)
         {
             DebugLog += $"MenuSelectionChanged: {value}\n";
@@ -62,20 +47,63 @@ namespace PlanEverything.ViewModels
             DebugLog += $"MenuSelectionChanged: {value}\n";
             if (MenuSelectedIndex != -1)
             {
-                PlanSelectedIndex = -1;
-                ViewSelectedIndex = MenuSelectedIndex;
+                ViewSelectedIndex = -1;
+                ViewSelectedIndex = PlanSelectedIndex;
             }
         }
 
         [RelayCommand]
-        private void CloseButtonClicked()
+        private void SwitchMenu()
         {
-            DebugLog += "CloseButtonClicked\n";
+            DebugLog += "SwitchMenu\n";
+            IsMenuOpen = !IsMenuOpen;
+            MenuButtonIcon = IsMenuOpen ? "\uf100" : "\uf101;";
         }
 
-        public void Exit()
+        [RelayCommand]
+        private static void MinimizeWindow(object? parameter)
         {
-            Environment.Exit(0);
+            if (parameter is WindowX window)
+            {
+                window.Minimize();
+            }
+        }
+
+        [RelayCommand]
+        private static void MaximizeOrRestore(object? parameter)
+        {
+            if (parameter is WindowX window)
+            {
+                if (window.WindowState == WindowState.Maximized)
+                {
+                    window.Normalmize();
+                }
+                else
+                {
+                    window.Maximize();
+                }
+            }
+        }
+
+        [RelayCommand]
+        private static void CloseWindow(object? parameter)
+        {
+            if ( parameter is WindowX window)
+            {
+                window.Close();
+            }
+        }
+
+        public ShellViewModel()
+        {
+            DashboardViewModel = new DashboardViewModel();
+            SettingsViewModel = new SettingsViewModel();
+            LogViewModel = new LogViewModel();
+
+            IsMenuOpen = true;
+            MenuButtonIcon = "\uf100";
+
+            DebugLog = "ShellViewModel created\n";
         }
     }
 }

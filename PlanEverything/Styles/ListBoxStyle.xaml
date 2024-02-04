@@ -20,9 +20,9 @@
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Foreground" Value="{DynamicResource DescriptionForeground}" />
+        <Setter Property="Foreground" Value="{DynamicResource DescriptionForegroundBrush}" />
         <Setter Property="pu:IconHelper.Margin" Value="0,0,10,0" />
-        <Setter Property="pu:ListBoxHelper.ItemsSelectedBackground" Value="{DynamicResource ItemHoverBrush}" />
+        <Setter Property="pu:ListBoxHelper.ItemsSelectedBackground" Value="{DynamicResource HoverBackgroundBrush}" />
         <Setter Property="pu:ListBoxHelper.ItemsPadding" Value="10,0,0,0" />
         <Setter Property="pu:ListBoxHelper.ItemsHeight" Value="33" />
         <Setter Property="pu:ListBoxHelper.ItemsCornerRadius" Value="5" />

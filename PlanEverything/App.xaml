@@ -13,6 +13,9 @@
                 <ResourceDictionary Source="pack://application:,,,/Panuon.WPF.UI;component/Control.xaml" />
                 <!--<ResourceDictionary Source="{x:Static pu:ResourceDictionaryUris.All}" />-->
 
+                <!--  自定义控件样式  -->
+                <ResourceDictionary Source="/PlanEverything;component/Themes/Generic.xaml" />
+
                 <!--  字体资源  -->
                 <ResourceDictionary>
                     <FontFamily x:Key="LightFontFamily">pack://application:,,,/Resources/Fonts/#MiSans Light</FontFamily>
@@ -28,20 +31,23 @@
                         FontSize="14"
                         IconFontFamily="{StaticResource IconFontFamily}">
                         <pu:GlobalSettings.Themes>
-                            <pu:ApplicationTheme Key="OrangeLight" ResourceDictionary="/PlanEverything;component/Resources/Themes/OrangeLight.xaml" />
-                            <pu:ApplicationTheme Key="OrangeDark" ResourceDictionary="/PlanEverything;component/Resources/Themes/OrangeDark.xaml" />
+                            <pu:ApplicationTheme Key="OrangeLight" ResourceDictionary="/PlanEverything;component/Themes/OrangeLight.xaml" />
+                            <pu:ApplicationTheme Key="OrangeDark" ResourceDictionary="/PlanEverything;component/Themes/OrangeDark.xaml" />
                         </pu:GlobalSettings.Themes>
                     </pu:GlobalSettings>
                 </ResourceDictionary>
 
                 <!--  相关控件样式  -->
-                <ResourceDictionary Source="/PlanEverything;component/Resources/Styles/LabelStyle.xaml" />
-                <ResourceDictionary Source="/PlanEverything;component/Resources/Styles/TabControlStyle.xaml" />
-                <ResourceDictionary Source="/PlanEverything;component/Resources/Styles/ComboBoxStyle.xaml" />
-                <ResourceDictionary Source="/PlanEverything;component/Resources/Styles/TextBoxStyle.xaml" />
-                <ResourceDictionary Source="/PlanEverything;component/Resources/Styles/MessageboxXStyle.xaml" />
-                <ResourceDictionary Source="/PlanEverything;component/Resources/Styles/RadioButtonStyle.xaml" />
-                <ResourceDictionary Source="/PlanEverything;component/Resources/Styles/ListBoxStyle.xaml" />
+                <ResourceDictionary Source="/PlanEverything;component/Styles/LabelStyle.xaml" />
+                <ResourceDictionary Source="/PlanEverything;component/Styles/TabControlStyle.xaml" />
+                <ResourceDictionary Source="/PlanEverything;component/Styles/ComboBoxStyle.xaml" />
+                <ResourceDictionary Source="/PlanEverything;component/Styles/TextBoxStyle.xaml" />
+                <ResourceDictionary Source="/PlanEverything;component/Styles/MessageboxXStyle.xaml" />
+                <ResourceDictionary Source="/PlanEverything;component/Styles/RadioButtonStyle.xaml" />
+                <ResourceDictionary Source="/PlanEverything;component/Styles/ListBoxStyle.xaml" />
+                <ResourceDictionary Source="/PlanEverything;component/Styles/ButtonStyle.xaml" />
+                <ResourceDictionary Source="/PlanEverything;component/Styles/ContextMenuStyle.xaml" />
+                <ResourceDictionary Source="/PlanEverything;component/Styles/CardStyle.xaml" />
 
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

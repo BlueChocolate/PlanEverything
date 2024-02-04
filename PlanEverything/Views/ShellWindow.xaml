@@ -11,16 +11,18 @@
     xmlns:pu="https://opensource.panuon.com/wpf-ui"
     xmlns:viewmodels="clr-namespace:PlanEverything.ViewModels"
     xmlns:views="clr-namespace:PlanEverything.Views"
+    Title="PlanEverything"
     Width="800"
     Height="600"
     MinWidth="800"
     MinHeight="450"
     d:DataContext="{d:DesignInstance Type=viewmodels:ShellViewModel}"
     pu:WindowXCaption.Height="0"
-    Background="{DynamicResource BodyBackground}"
+    Background="{DynamicResource ShellBackgroundBrush}"
     FontSize="20"
-    Foreground="{DynamicResource BodyForeground}"
+    Foreground="{DynamicResource ShellForegroundBrush}"
     mc:Ignorable="d">
+
     <pu:WindowX.DataContext>
         <viewmodels:ShellViewModel />
     </pu:WindowX.DataContext>
@@ -109,14 +111,11 @@
                             Width="40"
                             Height="40"
                             Margin="10,0,10,0"
-                            pu:ButtonHelper.HoverBackground="{DynamicResource HoverBackground}"
-                            pu:ButtonHelper.HoverCornerRadius="5"
-                            Background="Transparent"
                             Command="{Binding SwitchMenuCommand}"
                             Content="{Binding MenuButtonIcon}"
                             FontFamily="{StaticResource IconFontFamily}"
                             FontSize="18"
-                            Foreground="{DynamicResource BodyForeground}" />
+                            Style="{DynamicResource IconButtonStyle}" />
                     </Grid>
                 </Grid>
 
@@ -201,7 +200,13 @@
             <!--  标题栏控制区域  -->
             <Grid Grid.Row="0">
                 <!--  窗口拖拽区域  -->
-                <Rectangle pu:WindowX.IsDragMoveArea="True" Fill="Transparent" />
+                <Rectangle pu:WindowX.IsDragMoveArea="True" Fill="Transparent">
+                    <behaviors:Interaction.Triggers>
+                        <behaviors:EventTrigger EventName="">
+                            <behaviors:InvokeCommandAction Command="{Binding MinimizeWindowCommand}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=pu:WindowX}}" />
+                        </behaviors:EventTrigger>
+                    </behaviors:Interaction.Triggers>
+                </Rectangle>
 
                 <!--  标题栏控制区域  -->
                 <Grid>
@@ -215,6 +220,7 @@
                     <pu:SearchBox
                         Grid.Column="1"
                         Margin="14"
+                        pu:DropDownHelper.VerticalOffset="5"
                         pu:IconHelper.Margin="5,0,0,0"
                         pu:IconHelper.VerticalAlignment="Center"
                         pu:IconHelper.Width="20"
@@ -230,44 +236,28 @@
                         Margin="0,0,15,0"
                         Orientation="Horizontal">
                         <Button
-                            Width="30"
-                            Height="30"
                             Margin="0,0,5,0"
-                            HorizontalContentAlignment="Center"
-                            VerticalContentAlignment="Center"
-                            pu:ButtonHelper.HoverBackground="{DynamicResource HoverBackground}"
-                            pu:ButtonHelper.HoverCornerRadius="5"
-                            Background="Transparent"
-                            Command="{Binding CloseButtonClickedCommand}"
+                            Command="{Binding MinimizeWindowCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=pu:WindowX}}"
                             Content="&#xf068;"
                             FontFamily="{StaticResource IconFontFamily}"
-                            FontSize="18" />
+                            FontSize="18"
+                            Style="{DynamicResource IconButtonStyle}" />
                         <Button
-                            Width="30"
-                            Height="30"
                             Margin="0,0,5,0"
-                            HorizontalContentAlignment="Center"
-                            VerticalContentAlignment="Center"
-                            pu:ButtonHelper.HoverBackground="{DynamicResource HoverBackground}"
-                            pu:ButtonHelper.HoverCornerRadius="5"
-                            Background="Transparent"
-                            Command="{Binding CloseButtonClickedCommand}"
+                            Command="{Binding MaximizeOrRestoreCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=pu:WindowX}}"
                             Content="&#xf066;"
                             FontFamily="{StaticResource IconFontFamily}"
-                            FontSize="18" />
+                            Style="{DynamicResource IconButtonStyle}" />
                         <Button
-                            Width="30"
-                            Height="30"
-                            Margin="0,0,0,0"
-                            HorizontalContentAlignment="Center"
-                            VerticalContentAlignment="Center"
-                            pu:ButtonHelper.HoverBackground="{DynamicResource HoverBackground}"
-                            pu:ButtonHelper.HoverCornerRadius="5"
-                            Background="Transparent"
-                            Command="{Binding CloseButtonClickedCommand}"
+                            Margin="0"
+                            Command="{Binding CloseWindowCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=pu:WindowX}}"
                             Content="&#xf00d;"
                             FontFamily="{StaticResource IconFontFamily}"
-                            FontSize="18" />
+                            FontSize="18"
+                            Style="{DynamicResource IconButtonStyle}" />
                     </StackPanel>
 
                 </Grid>
@@ -295,151 +285,10 @@
 
                     <ContentControl Content="{Binding SettingsViewModel}" />
 
-                    <ContentControl />
+                    <ContentControl Content="{Binding LogViewModel}" />
                 </pu:CarouselPanel>
             </Grid>
         </Grid>
 
     </Grid>
-
-    <!--<Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="1" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-
-
-
-        <TabControl
-            Grid.Row="1"
-            Margin="10"
-            pu:IconHelper.Margin="0,0,5,0"
-            pu:TabControlHelper.HeaderPanelAlignment="Stretch"
-            pu:TabControlHelper.ItemsHeight="40"
-            pu:TabControlHelper.ItemsHorizontalHeaderAlignment="Left"
-            pu:TabControlHelper.ItemsHoverBackground="Transparent"
-            pu:TabControlHelper.ItemsHoverForeground="{DynamicResource ThinColor}"
-            pu:TabControlHelper.ItemsPadding="15,0"
-            pu:TabControlHelper.ItemsRibbonLineCornerRadius="2"
-            pu:TabControlHelper.ItemsRibbonLineMargin="0,11,20,11"
-            pu:TabControlHelper.ItemsRibbonLineThickness="5"
-            pu:TabControlHelper.ItemsRibbonLineVisibility="Visible"
-            pu:TabControlHelper.ItemsSelectedBackground="Transparent"
-            pu:TabControlHelper.ItemsSelectedForeground="{DynamicResource MainColor}"
-            pu:TabControlHelper.ItemsSelectedRibbonLineBrush="{DynamicResource MainColor}"
-            Background="Transparent"
-            BorderThickness="0,0,0,0"
-            FontSize="20"
-            Foreground="{DynamicResource BodyForeground}"
-            TabStripPlacement="Left">
-
-            <pu:TabControlHelper.EndControl>
-                <Button
-                    Margin="10,0,0,0"
-                    HorizontalAlignment="Left"
-                    pu:ButtonHelper.ClickForeground="{DynamicResource MainColor}"
-                    pu:ButtonHelper.HoverBackground="Transparent"
-                    pu:ButtonHelper.HoverForeground="{DynamicResource ButtonHoverForeground}"
-                    pu:ButtonHelper.Icon="&#xe938;"
-                    pu:IconHelper.Margin="0,0,5,0"
-                    Background="Transparent"
-                    Click="AboutButtonOnClick"
-                    Content="关于"
-                    FontSize="20"
-                    Foreground="{DynamicResource BodyForeground}" />
-            </pu:TabControlHelper.EndControl>
-
-            <TabItem pu:TabItemHelper.Icon="&#xe942;" Header="仪表盘">
-                <Grid>
-                    <Button
-                        Width="100"
-                        Height="40"
-                        pu:ButtonHelper.CornerRadius="5"
-                        Background="{DynamicResource MainColor}"
-                        Click="Button_Click"
-                        Content="切换主题"
-                        FontFamily="{StaticResource PanuonIconFont}"
-                        FontSize="16"
-                        Foreground="White" />
-                </Grid>
-            </TabItem>
-            <TabItem pu:TabItemHelper.Icon="&#xe994;" Header="配置文件" />
-            <TabItem pu:TabItemHelper.Icon="&#xe9a6;" Header="日志">
-
-            </TabItem>
-            <TabItem pu:TabItemHelper.Icon="&#xe990;" Header="设置">
-
-                <TabControl
-                    pu:TabControlHelper.HeaderPanelAlignment="Stretch"
-                    pu:TabControlHelper.ItemsHeight="50"
-                    pu:TabControlHelper.ItemsHorizontalHeaderAlignment="Left"
-                    pu:TabControlHelper.ItemsHoverBackground="Transparent"
-                    pu:TabControlHelper.ItemsHoverForeground="{DynamicResource ThinColor}"
-                    pu:TabControlHelper.ItemsMargin="0,0,10,0"
-                    pu:TabControlHelper.ItemsRibbonLineCornerRadius="2"
-                    pu:TabControlHelper.ItemsRibbonLineMargin="15,5,15,0"
-                    pu:TabControlHelper.ItemsRibbonLinePlacement="Bottom"
-                    pu:TabControlHelper.ItemsRibbonLineThickness="5"
-                    pu:TabControlHelper.ItemsRibbonLineVisibility="Visible"
-                    pu:TabControlHelper.ItemsSelectedBackground="Transparent"
-                    pu:TabControlHelper.ItemsSelectedForeground="{DynamicResource MainColor}"
-                    pu:TabControlHelper.ItemsSelectedRibbonLineBrush="{DynamicResource MainColor}"
-                    Background="Transparent"
-                    BorderThickness="0,0,0,0"
-                    FontSize="30"
-                    Foreground="{DynamicResource BodyForeground}">
-                    <TabItem Header="基础">
-                        <ScrollViewer>
-                            <StackPanel>
-                                <Label
-                                    Margin="5"
-                                    Content="语言"
-                                    Style="{DynamicResource MediumLabelStyle}" />
-                                <ComboBox
-                                    Height="30"
-                                    Margin="5"
-                                    pu:ComboBoxHelper.CornerRadius="0"
-                                    pu:ComboBoxHelper.FocusedBorderBrush="{DynamicResource MainColor}"
-                                    pu:ComboBoxHelper.HoverBorderBrush="{DynamicResource MainColor}"
-                                    pu:ComboBoxHelper.ItemsHoverBackground="{DynamicResource HoverBackground}"
-                                    pu:ComboBoxHelper.ItemsSelectedBackground="{DynamicResource MainColor}"
-                                    pu:ShadowHelper.Opacity="0"
-                                    Background="{DynamicResource BodyBackground}"
-                                    FontSize="16"
-                                    Foreground="{DynamicResource BodyForeground}">
-                                    <ComboBoxItem Content="简体中文" IsSelected="True" />
-                                    <ComboBoxItem Content="English" />
-                                </ComboBox>
-
-                                <Label
-                                    Margin="5"
-                                    Content="主题"
-                                    Style="{DynamicResource MediumLabelStyle}" />
-
-                                <StackPanel Orientation="Horizontal">
-                                    <RadioButton
-                                        Margin="5"
-                                        Content="跟随系统"
-                                        GroupName="Theme" />
-                                    <RadioButton
-                                        Margin="5"
-                                        Content="浅色模式"
-                                        GroupName="Theme" />
-                                    <RadioButton
-                                        Margin="5"
-                                        Content="黑暗模式"
-                                        GroupName="Theme" />
-                                </StackPanel>
-                            </StackPanel>
-                        </ScrollViewer>
-                    </TabItem>
-                    <TabItem Header="外观" />
-                    <TabItem Header="高级" />
-                </TabControl>
-
-            </TabItem>
-            <TabItem pu:TabItemHelper.Icon="&#xe9ce;" Header="调试" />
-        </TabControl>
-    </Grid>-->
 </pu:WindowX>

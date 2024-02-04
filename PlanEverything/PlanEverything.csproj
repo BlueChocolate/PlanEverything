@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.77" />
     <PackageReference Include="Panuon.WPF.UI" Version="1.1.16.8" />
     <PackageReference Include="ValueConverters" Version="3.0.26" />
   </ItemGroup>
@@ -38,6 +39,12 @@
     <Resource Include="Resources\Images\Logo.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>
