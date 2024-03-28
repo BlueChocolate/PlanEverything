@@ -22,6 +22,7 @@
         BasedOn="{StaticResource {x:Static pu:StyleKeys.ListBoxStyle}}"
         TargetType="ListBox">
         <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FontSize" Value="16" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{DynamicResource DescriptionForegroundBrush}" />
         <Setter Property="FontSize" Value="16" />

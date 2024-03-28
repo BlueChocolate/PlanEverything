@@ -12,10 +12,10 @@ namespace PlanEverything.Controls
     {
         public static readonly DependencyProperty TitleProperty = DependencyProperty.Register("Title", typeof(string), typeof(Card), new PropertyMetadata(string.Empty));
         public static readonly DependencyProperty TitleForegroundProperty = DependencyProperty.Register("TitleForeground", typeof(Brush), typeof(Card), new PropertyMetadata(Brushes.Black));
-
+        
         public static readonly DependencyProperty DescriptionProperty = DependencyProperty.Register("Description", typeof(string), typeof(Card), new PropertyMetadata(string.Empty));
         public static readonly DependencyProperty DescriptionForegroundProperty = DependencyProperty.Register("DescriptionForeground", typeof(Brush), typeof(Card), new PropertyMetadata(Brushes.Gray));
-
+        
         public static readonly DependencyProperty IconProperty = DependencyProperty.Register("Icon", typeof(object), typeof(Card), new PropertyMetadata(null));
         public static readonly DependencyProperty IconHeightProperty = DependencyProperty.Register("IconHeight", typeof(double), typeof(Card), new PropertyMetadata(16.0));
         public static readonly DependencyProperty IconMinHeightProperty = DependencyProperty.Register("IconMinHeight", typeof(double), typeof(Card), new PropertyMetadata(32.0));
@@ -25,10 +25,10 @@ namespace PlanEverything.Controls
         public static readonly DependencyProperty IconFontSizeProperty = DependencyProperty.Register("IconFontSize", typeof(double), typeof(Card), new PropertyMetadata(16.0));
         public static readonly DependencyProperty IconFontFamilyProperty = DependencyProperty.Register("IconFontFamily", typeof(FontFamily), typeof(Card), new PropertyMetadata(new FontFamily("Segoe MDL2 Assets")));
         public static readonly DependencyProperty IconFontForegroundProperty = DependencyProperty.Register("IconFontForeground", typeof(Brush), typeof(Card), new PropertyMetadata(Brushes.Black));
-
+        
         public static readonly DependencyProperty ContentPositionProperty = DependencyProperty.Register("ContentPosition", typeof(ContentPosition), typeof(Card), new PropertyMetadata(ContentPosition.Bottom));
         public static readonly DependencyProperty ContentProperty = DependencyProperty.Register("Content", typeof(object), typeof(Card), new PropertyMetadata(null));
-
+        
         public static new readonly DependencyProperty BackgroundProperty = DependencyProperty.Register("Background", typeof(Brush), typeof(Card), new PropertyMetadata(Brushes.Transparent));
 
         public string Title

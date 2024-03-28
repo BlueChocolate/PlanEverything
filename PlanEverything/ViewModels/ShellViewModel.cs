@@ -83,6 +83,26 @@ namespace PlanEverything.ViewModels
         [ObservableProperty]
         private string? _debugLog;
 
+        partial void OnMenuSelectedIndexChanged(int value)
+        {
+            DebugLog += $"MenuSelectionChanged: {value}\n";
+            if (MenuSelectedIndex != -1)
+            {
+                PlanSelectedIndex = -1;
+                ViewSelectedIndex = MenuSelectedIndex;
+            }
+        }
+
+        partial void OnPlanSelectedIndexChanged(int value)
+        {
+            DebugLog += $"MenuSelectionChanged: {value}\n";
+            if (MenuSelectedIndex != -1)
+            {
+                ViewSelectedIndex = -1;
+                ViewSelectedIndex = PlanSelectedIndex;
+            }
+        }
+
         [RelayCommand]
         private void DeletePlan(object? parameter)
         {
@@ -152,11 +172,9 @@ namespace PlanEverything.ViewModels
         #region 左侧菜单控制方法
         partial void OnMenuSelectedIndexChanged(int value)
         {
-            DebugLog += $"MenuSelectionChanged: {value}\n";
-            if (MenuSelectedIndex != -1)
+            if (parameter is WindowX window)
             {
-                PlanSelectedIndex = -1;
-                ViewSelectedIndex = MenuSelectedIndex;
+                window.Minimize();
             }
         }
 
